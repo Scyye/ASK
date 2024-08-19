@@ -8,18 +8,13 @@ using ModsPlus;
 
 namespace ASK.Cards.COD
 {
-    public class Juggernog : SimpleCard
-    {
-        public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers)
-        {
-            Main.instance.Log($"Enabling Card: {cardInfo.cardName}");
-        }
+    public class Juggernog : CodUpgrade {
         public override CardDetails Details => new CardDetails()
         {
             Title = "Juggernog",
             Description = "When you need some help to get by, something to make you feel strong.",
             Theme = CardThemeColor.CardThemeColorType.DefensiveBlue,
-            Rarity = Main.CodRarity,
+            Rarity = CardInfo.Rarity.Uncommon,
             Stats = new CardInfoStat[]
             {
                 new CardInfoStat()
@@ -35,9 +30,7 @@ namespace ASK.Cards.COD
 
         protected override void Added(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            base.Added(player, gun, gunAmmo, data, health, gravity, block, characterStats);
-
-            characterStats.health += 150;
+            data.maxHealth += 150;
         }
     }
 }

@@ -16,8 +16,8 @@ namespace ASK.Cards.Clash
             new CardInfoStat()
             {
                 positive= true,
-                stat = "Range",
-                amount = "+50%"
+                stat = "Bullet Gravity",
+                amount = "-50%"
             },
             new CardInfoStat()
             {
@@ -37,17 +37,9 @@ namespace ASK.Cards.Clash
 
         protected override void Added(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            base.Added(player, gun, gunAmmo, data, health, gravity, block, characterStats);
-
-            gun.destroyBulletAfter *= 1.5f;
+            gun.gravity *= 0.5f;
             gun.damageAfterDistanceMultiplier *= 1.15f;
             gun.damage *= 0.8f;
-        }
-
-        public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers)
-        {
-            base.SetupCard(cardInfo, gun, cardStats, statModifiers);
-
         }
     }
 }

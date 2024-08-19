@@ -42,10 +42,8 @@ namespace ASK.Cards.Clash
 
         protected override void Added(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            base.Added(player, gun, gunAmmo, data, health, gravity, block, characterStats);
-
             gun.damage *= 1.5f;
-            characterStats.health *= 1.5f;
+            data.maxHealth *= 1.5f;
             characterStats.movementSpeed *= 0.6f;
         }
     }

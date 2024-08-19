@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HarmonyLib;
-using ModsPlus;
+﻿using ModsPlus;
 
-namespace ASK.Cards.Clash
-{
+namespace ASK.Cards.Clash {
     public class Knight : SimpleCard
     {
         // NERFED
@@ -43,10 +36,8 @@ namespace ASK.Cards.Clash
 
         protected override void Added(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            base.Added(player, gun, gunAmmo, data, health, gravity, block, characterStats);
-
-            characterStats.health *= 1.5f;
-            gun.attackSpeedMultiplier *= 0.75f;
+            data.maxHealth *= 1.5f;
+            gun.attackSpeed *= 0.75f;
             gun.damage *= 0.85f;
         }
     }

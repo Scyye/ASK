@@ -4,11 +4,6 @@ namespace ASK.Cards
 {
     public class Fly : SimpleCard
     {
-
-        public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers)
-        {
-            Main.instance.Log($"Enabling Card: {cardInfo.cardName}");
-        }
         public override CardDetails Details => new CardDetails
         {
             ModName=Main.ModInitials,
@@ -36,14 +31,8 @@ namespace ASK.Cards
 
         protected override void Added(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            characterStats.movementSpeed = 0.85f;
-        }
-
-
-        public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
-        {
-            base.SetupCard(cardInfo, gun, cardStats, statModifiers, block);
-            statModifiers.numberOfJumps += 3;
+            characterStats.movementSpeed *= 0.85f;
+            data.jumps += 3;
         }
     }
 }

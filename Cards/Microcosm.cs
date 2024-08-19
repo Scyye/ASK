@@ -4,10 +4,6 @@ namespace ASK.Cards
 {
     public class Microcosm : SimpleCard
     {
-        public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers)
-        {
-            Main.instance.Log($"Enabling Card: {cardInfo.cardName}");
-        }
         public override CardDetails Details => new CardDetails
         {
             ModName=Main.ModInitials,
@@ -25,7 +21,7 @@ namespace ASK.Cards
                 },
                 new CardInfoStat()
                 {
-                    amount="-25%",
+                    amount="-75%",
                     positive=false,
                     stat = "Bullet Size"
                 },
@@ -41,9 +37,9 @@ namespace ASK.Cards
 
         protected override void Added(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            gun.projectileSize = 0.75f;
-            gun.damage = 1.5f;
-            characterStats.health = 0.9f;
+            gun.projectileSize -= 0.75f;
+            gun.damage *= 1.5f;
+            data.maxHealth *= 0.9f;
         }
     }
 }

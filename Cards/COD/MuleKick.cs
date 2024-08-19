@@ -8,18 +8,14 @@ using ModsPlus;
 
 namespace ASK.Cards.COD
 {
-    public class MuleKick : SimpleCard
+    public class MuleKick : CodUpgrade
     {
-        public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers)
-        {
-            Main.instance.Log($"Enabling Card: {cardInfo.cardName}");
-        }
         public override CardDetails Details => new CardDetails()
         {
             Title = "Mule Kick",
             Description = "Legend tells us of a man, a hero in a tortured land, where Señoritas lived in fear.",
             Theme = CardThemeColor.CardThemeColorType.PoisonGreen,
-            Rarity = Main.CodRarity,
+            Rarity = CardInfo.Rarity.Rare,
             Stats = new CardInfoStat[]
             {
                 new CardInfoStat()
@@ -34,8 +30,6 @@ namespace ASK.Cards.COD
 
         protected override void Added(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            base.Added(player, gun, gunAmmo, data, health, gravity, block, characterStats);
-
             gun.numberOfProjectiles *= 2;
         }
     }

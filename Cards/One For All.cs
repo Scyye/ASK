@@ -4,10 +4,6 @@ namespace ASK.Cards
 {
     public class OneForAll : SimpleCard
     {
-        public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers)
-        {
-            Main.instance.Log($"Enabling Card: {cardInfo.cardName}");
-        }
         public override CardDetails Details => new CardDetails
         {
             ModName=Main.ModInitials,
@@ -32,11 +28,15 @@ namespace ASK.Cards
             }
         };
 
+        public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
+        {
+            cardInfo.allowMultiple = false;
+        }
 
         protected override void Added(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            gun.ammo += gun.ammo/4;
-            gun.ammoReg *= 1.25f;
+            gunAmmo.maxAmmo += gunAmmo.maxAmmo/4;
+            gunAmmo.ammoReg *= 1.25f;
             gun.attackSpeed *= 1.25f;
             gun.bodyRecoil *= 1.25f;
             gun.bursts += gun.bursts / 4;
@@ -55,7 +55,7 @@ namespace ASK.Cards
             block.forceToAdd *= 1.25f;
             block.forceToAddUp *= 1.25f;
 
-            characterStats.health *= 1.25f;
+            data.maxHealth *= 1.25f;
             characterStats.jump *= 1.25f;
             characterStats.numberOfJumps += characterStats.numberOfJumps / 4;
             characterStats.attackSpeedMultiplier *= 1.25f;

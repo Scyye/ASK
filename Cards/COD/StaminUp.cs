@@ -8,19 +8,15 @@ using ModsPlus;
 
 namespace ASK.Cards.COD
 {
-    public class StaminUp : SimpleCard
+    public class StaminUp : CodUpgrade
     {
         // Buffed
-        public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers)
-        {
-            Main.instance.Log($"Enabling Card: {cardInfo.cardName}");
-        }
         public override CardDetails Details => new CardDetails()
         {
             Title = "Stamin-Up",
             Description = "Stamin-up-Min-Up! (x3) When you need some extra runnin', when you need some extra time-",
             Theme = CardThemeColor.CardThemeColorType.TechWhite,
-            Rarity = Main.CodRarity,
+            Rarity = CardInfo.Rarity.Common,
             Stats = new CardInfoStat[]
             {
                 new CardInfoStat()

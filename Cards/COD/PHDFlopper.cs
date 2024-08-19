@@ -3,26 +3,22 @@ using ModsPlus;
 
 namespace ASK.Cards.COD
 {
-    public class PHDFlopper : SimpleCard
+    public class PHDFlopper : CodUpgrade
     {
         // Fixed stats
-        public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers)
-        {
-            Main.instance.Log($"Enabling Card: {cardInfo.cardName}");
-        }
         public override CardDetails Details => new CardDetails()
         {
             Title = "PhD Flopper",
             Description = "PhD, night-time scene. PhD, the streets are mean. PhD, the things I've seen, the good (PhD), and the bad.",
             Theme = CardThemeColor.CardThemeColorType.DefensiveBlue,
-            Rarity = Main.CodRarity,
+            Rarity = CardInfo.Rarity.Uncommon,
             Stats = new CardInfoStat[]
             {
                 new CardInfoStat()
                 {
                     positive= true,
-                    stat = "Projectile Cunt",
-                    amount = "+2"
+                    stat = "Poison Resistance",
+                    amount = "+50%"
                 }
             },
             ModName = Main.CodInitials
@@ -30,9 +26,7 @@ namespace ASK.Cards.COD
 
         protected override void Added(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            base.Added(player, gun, gunAmmo, data, health, gravity, block, characterStats);
-
-            gun.numberOfProjectiles += 2;
+            ASK.Extensions.CharacterStatModifiersExtension.GetAdditionalData(characterStats).poisonResistance *= 0.50f;
         }
     }
 }

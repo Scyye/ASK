@@ -20,7 +20,7 @@ namespace ASK.Cards
             {
                 new CardInfoStat()
                 {
-                    amount = "+10%",
+                    amount = "+25%",
                     positive=true,
                     stat="Lifesteal"
                 },
@@ -38,12 +38,6 @@ namespace ASK.Cards
                 },
                 new CardInfoStat()
                 {
-                    amount = "-15%",
-                    positive=false,
-                    stat="Movement Speed"
-                },
-                new CardInfoStat()
-                {
                     amount="1% Self Damage",
                     positive=false,
                     stat="On Jump"
@@ -52,16 +46,11 @@ namespace ASK.Cards
         };
 
 
-        protected override void Added(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
-        {
-            characterStats.movementSpeed *= 0.85f;
+        protected override void Added(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, 
+            Gravity gravity, Block block, CharacterStatModifiers characterStats) {
             characterStats.lifeSteal *= 1.25f;
-            characterStats.numberOfJumps += 1;
-        }
-
-        public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers)
-        {
-            Main.instance.Log($"Enabling Card: {cardInfo.cardName}");
+            data.jumps += 2;
+            gunAmmo.maxAmmo += 3;
         }
     }
 
@@ -74,9 +63,9 @@ namespace ASK.Cards
         public override void Initialize(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             base.Initialize(player, gun, gunAmmo, data, health, gravity, block, characterStats);
-            this.Health = health;
-            this.Player= player;
-            this.Modifiers=characterStats;
+            Health = health;
+            Player= player;
+            Modifiers=characterStats;
         }
 
         public override void OnJump()

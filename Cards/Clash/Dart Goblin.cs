@@ -40,13 +40,13 @@ namespace ASK.Cards.Clash
             new CardInfoStat()
             {
                 positive=false,
-                amount="-20%",
+                amount="-50%",
                 stat="Damage"
             },
             new CardInfoStat()
             {
                 positive=false,
-                amount="-40%",
+                amount="-30%",
                 stat="Health"
             }
             },
@@ -55,17 +55,11 @@ namespace ASK.Cards.Clash
 
         protected override void Added(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            base.Added(player, gun, gunAmmo, data, health, gravity, block, characterStats);
             characterStats.movementSpeed *= 1.55f;
-            gun.attackSpeedMultiplier *= 0.25f;
-            gun.damage *= 0.8f;
-            characterStats.health *= 0.6f;
-        }
-
-        public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers)
-        {
-            base.SetupCard(cardInfo, gun, cardStats, statModifiers);
-            gun.ammo += 15;
+            gun.attackSpeed *= 0.25f;
+            gun.damage *= 0.5f;
+            gunAmmo.maxAmmo += 15;
+            data.maxHealth *= 0.7f;
         }
     }
 }
